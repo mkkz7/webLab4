@@ -1,14 +1,14 @@
 package mkkz7.beans;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
-import mkkz7.entities.User;
+import mkkz7.db.entities.User;
 import mkkz7.exceptions.AuthValidationException;
 import mkkz7.exceptions.UserAlreadyExistsException;
-import mkkz7.utils.UserDTO;
-
-import java.util.HashMap;
-import java.util.Map;
+import mkkz7.exceptions.UserNotFoundException;
+import mkkz7.utils.HashMonster;
+import mkkz7.utils.DTO.UserDTO;
 
 @Stateless
 public class AuthBean {
@@ -29,29 +29,45 @@ public class AuthBean {
         }
     }
 
+    public void clear(){
+        serviceBean.deletePoints();
+    }
+
+    public User findById(long id){
+        return serviceBean.findById(id);
+    }
+
     public boolean isRegistered(String username){
         return serviceBean.findByUsername(username) != null;
     }
 
-    public void loginUser(UserDTO userDTO){
-        if(!(isRegistered(userDTO.getUsername()))){
-            regUser(userDTO);
+    public User loginUser(UserDTO userDTO){
+        validate(userDTO);
+        User user = serviceBean.findByUsername(userDTO.getUsername());
+
+        if(user == null){
+            throw new UserNotFoundException(userDTO.getUsername());
         }
 
-        //Логика поиска пользователя по нику в бд и если есть, то збс
-        //Для реализации нужен jpa и хубернейт
+        BCrypt.Result result = HashMonster.verifyPassword(userDTO.getPassword(), user.getPassword_hash());
+
+        if(!result.verified){
+            throw new AuthValidationException("Incorrect password or username!");
+        }
+
+        return user;
     }
 
-    public boolean regUser(UserDTO userDTO){
+    public User regUser(UserDTO userDTO){
+        validate(userDTO);
         if(isRegistered(userDTO.getUsername())){
             throw new UserAlreadyExistsException(userDTO.getUsername());
         }
         User user = User.builder()
                 .username(userDTO.getUsername())
-                .password_hash(userDTO.getPassword())
-                .salt("")
+                .password_hash(HashMonster.generateHash(userDTO.getPassword()))
                 .build();
         serviceBean.register(user);
-        return true;
+        return user;
     }
 }

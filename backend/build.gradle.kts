@@ -21,6 +21,7 @@ dependencies {
     compileOnly("jakarta.platform:jakarta.jakartaee-api:10.0.0")
 
     // Для компиляции
+    implementation("at.favre.lib:bcrypt:0.10.2")
     implementation("jakarta.servlet:jakarta.servlet-api:6.0.0")
     implementation("jakarta.ws.rs:jakarta.ws.rs-api:3.1.0")
     implementation("jakarta.persistence:jakarta.persistence-api:3.1.0")

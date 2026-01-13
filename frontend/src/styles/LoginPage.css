@@ -1,0 +1,323 @@
+.login-page-container {
+  min-height: 100vh;
+  background-color: #0a0a0a;
+  background-image:
+          radial-gradient(circle at 15% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 25%),
+          radial-gradient(circle at 85% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 25%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  color: #ffffff;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 50px 40px;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.login-form-container::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  background: linear-gradient(135deg,
+  rgba(255, 255, 255, 0.1) 0%,
+  transparent 20%,
+  transparent 80%,
+  rgba(255, 255, 255, 0.1) 100%);
+  border-radius: 17px;
+  z-index: -1;
+}
+
+
+.form-title {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 50px;
+  color: #ffffff;
+  position: relative;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+form fieldset {
+  border: none;
+  margin-bottom: 30px;
+  padding: 0;
+  position: relative;
+}
+
+form legend {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 12px;
+  padding: 0;
+}
+
+form input {
+  width: 100%;
+  padding: 18px 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  font-size: 16px;
+  color: #ffffff;
+  transition: all 0.3s ease;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+form input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 300;
+}
+
+form input:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+
+form input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.enter-button {
+  width: 100%;
+  padding: 20px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.enter-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+  transparent,
+  rgba(255, 255, 255, 0.1),
+  transparent);
+  transition: left 0.5s ease;
+}
+
+.enter-button:hover::before {
+  left: 100%;
+}
+
+.enter-button:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.enter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-message {
+  margin-top: 25px;
+  padding: 18px;
+  background: rgba(255, 50, 50, 0.1);
+  border: 1px solid rgba(255, 50, 50, 0.3);
+  border-radius: 10px;
+  color: #ff6b6b;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.success-message {
+  margin-top: 25px;
+  padding: 18px;
+  background: rgba(50, 255, 50, 0.1);
+  border: 1px solid rgba(50, 255, 50, 0.3);
+  border-radius: 10px;
+  color: #6bff6b;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.register-link a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.register-link a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.7);
+  transition: width 0.3s ease;
+}
+
+.register-link a:hover {
+  color: #ffffff;
+}
+
+.register-link a:hover::after {
+  width: 100%;
+}
+
+#err-message {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .login-page-container {
+    padding: 20px 15px;
+  }
+
+  .login-form-container {
+    padding: 40px 25px;
+    max-width: 100%;
+  }
+
+  .form-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+  }
+
+  form input {
+    padding: 16px 18px;
+  }
+
+  .enter-button {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form-container {
+    padding: 30px 20px;
+    border-radius: 12px;
+  }
+
+  .form-title {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  form legend {
+    font-size: 13px;
+  }
+
+  form input {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .enter-button {
+    padding: 16px;
+    font-size: 15px;
+  }
+}
+
+.header-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 30px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+
+.initials, .group, .variant {
+  font-weight: 300;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.initials {
+  font-size: 18px;
+}
+
+.group {
+  font-size: 16px;
+}
+
+.variant {
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

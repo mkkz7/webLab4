@@ -1,0 +1,70 @@
+body {
+  background-color: #121212;
+  color: #ffffff;
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  box-sizing: border-box;
+}
+
+
+.user-main-grid {
+  display: grid;
+  gap: 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+
+#root {
+  min-width: 618px;
+}
+
+
+@media (max-width: 846px) {
+  .user-main-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "graph"
+      "form"
+      "table";
+    gap: 20px;
+    padding: 0;
+    overflow-x: auto;
+  }
+
+
+  .graph-container,
+  .coordinates-form,
+  .table-wrapper {
+    min-width: 618px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+
+  .graph-container::before,
+  .coordinates-form::before,
+  .table-wrapper::before {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+
+

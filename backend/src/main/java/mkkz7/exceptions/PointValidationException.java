@@ -1,7 +1,10 @@
 package mkkz7.exceptions;
 
-public class PointValidationException extends Exception{
+import jakarta.ejb.ApplicationException;
+
+@ApplicationException(rollback = false)
+public class PointValidationException extends BusinessException{
     public PointValidationException(String message){
-        super(message);
+        super(message, 400);
     }
 }

@@ -4,7 +4,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-import mkkz7.entities.User;
+import mkkz7.db.entities.User;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class UserDAO implements IUserDAO{
     }
 
     @Override
-    public User find(long id){
+    public User findById(long id){
         return em.find(User.class, id);
     }
 
